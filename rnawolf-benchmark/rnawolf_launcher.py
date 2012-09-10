@@ -28,19 +28,23 @@ if __name__ == '__main__':
     parse_py = "/u/schirmer/Documents/cloned/rna-toolbox/rnawolf-benchmark/parse.py"
     
     # analyse the output (fasta file directory containing all the seq and their struct
-    fasta_file_dir = "/u/schirmer/Documents/rnawolf-bench/Bench-Long/1GRZ/"
+    fasta_file_dir = "/u/schirmer/Documents/cloned/rna-toolbox/rnawolf-benchmark/data-long-mcfold/"#"/u/schirmer/Documents/rnawolf-bench/Bench-Long/1GRZ/"
+
     list_fasta = os.listdir(fasta_file_dir)
     list_fasta.sort()
     i = 0
     list_processed = []
     
     for fasta in list_fasta:
-        i += 1
+        # take only the reference structures
+        if not fasta.endswith('Ref'):
+          continue;
         
         # open each fasta file that contains name, seq and struct
         with open(os.path.join(fasta_file_dir, fasta), 'r') as fasta_contents:
 						# get out name, seq, struct
             splitted_content = fasta_contents.read().split('\n')
+            #print "opening fasta file with "+str(len(splitted_content))+" lines\n"
             if len(splitted_content) <= 1:
               break
             name = splitted_content[0].replace('>', '')
@@ -49,6 +53,7 @@ if __name__ == '__main__':
             splitted_content2 = structure_and_energy.split(' ')
             structure = splitted_content2[0]
 						#energy = splitted_content2[xx] 
+            i += 1
             
 						# don't process structures already processed
             if not name in list_processed:
@@ -66,6 +71,11 @@ if __name__ == '__main__':
                 
                 out_path = os.path.join(fsa_out_dir, '{name}.fsa'.format(name=name))
                 # call parse.py giving it the needed params
+                print 'python {parse_py} -i {wolf} -n {name} -o {output} -s {structure}'.format(parse_py=parse_py,
+                                                                                                                    wolf=rnawolf_output,
+                                                                                                                    name=name,
+                                                                                                                    output=out_path,
+                                                                                                                    structure=structure)
                 out2, err2 = call_command('python {parse_py} -i {wolf} -n {name} -o {output} -s {structure}'.format(parse_py=parse_py,
                                                                                                                     wolf=rnawolf_output,
                                                                                                                     name=name,
