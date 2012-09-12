@@ -25,5 +25,19 @@ Get the reference structure:
 ```bash
 head -n3 data-long-mcfold/1GRZ-Ref | tail -n1
 ```
+Putting it all together:
+```bash
+short="1GRZ"; name=`head -n1 data-long-mcfold/$short-Ref | tr -d ['>']`; struct=`head -n3 data-long-mcfold/$short-Ref | tail -n1`; python parse.py -i "results/subopt/$short-Ref.subopt-res.fsa" -n "$name" -o "results/subopt/$short-Ref.subopt-res-for-stats.fsa" -s "$struct"
+```
+this is not quite correct, we have to throw away some lines before parsing
+```bash
+tail -n+3 results/subopt/1GRZ-Ref.subopt-res.fsa | cut -d " " -f 1-2
+for f in `ls results/subopt/*-Ref.subopt-res.fsa`; do `tail -n+3 $f | cut -d " " -f 1-2 > $f.cut`; done
+ls results/subopt/*
+```
+Run computation again
+```bash
+shortname="1GRZ"; name=`head -n1 data-long-mcfold/$shortname-Ref | tr -d ['>']`; struct=`head -n3 data-long-mcfold/$shortname-Ref | tail -n1`; python parse.py -i "results/subopt/$shortname-Ref.subopt-res.fsa.cut" -n "$name" -o "results/subopt/$shortname-Ref.subopt-res-for-stats.fsa" -s "$struct"
+```
 
 Run stats tool in ye olde loop
