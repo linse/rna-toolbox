@@ -48,6 +48,6 @@ python parse.py -i "results/subopt/$shortname-Ref.subopt-res.fsa.cut" -n "$name"
 Run stats tool in ye olde loop
 ```bash
 for f in `ls results/subopt/*stats.fsa`; 
-do `makeStats $f > $f.stats`; 
+do `./makeStats $f > $f.stats`; 
 done
 
