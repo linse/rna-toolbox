@@ -1,11 +1,20 @@
 We evaluate several RNA folding programs with suboptimals.
 
-The evaluation procedures for the programs can be found in the files:
+All reference structure files should be in one directory, here data-long-mcfold, and should end in "Ref".
 
-[mcfold](http://github.com/linse/rna-toolbox/blob/master/rnawolf-benchmark/mcfold.md)
-[dp-mcfold](https://github.com/linse/rna-toolbox/blob/master/rnawolf-benchmark/mcfold-dp.md)
-[rnasubopt](https://github.com/linse/rna-toolbox/blob/master/rnawolf-benchmark/rnasubopt.md)
-[rnawolf](https://github.com/linse/rna-toolbox/blob/master/rnawolf-benchmark/rnawolf.md)
+For the output of the four tools, we create directories
+```bash
+mkdir -p results/dp-mcfold results/mcfold results/subopt results/wolf
+```
+
+The evaluation procedures for the programs can be found in separate markdown files:
+
+* [mcfold](http://github.com/linse/rna-toolbox/blob/master/rnawolf-benchmark/mcfold.md)
+* [dp-mcfold](https://github.com/linse/rna-toolbox/blob/master/rnawolf-benchmark/mcfold-dp.md)
+* [rnasubopt](https://github.com/linse/rna-toolbox/blob/master/rnawolf-benchmark/rnasubopt.md)
+* [rnawolf](https://github.com/linse/rna-toolbox/blob/master/rnawolf-benchmark/rnawolf.md)
+
+---
 
 Originally, RNAwolf was evaluated with a python script.
 
@@ -21,11 +30,12 @@ Originally, RNAwolf was evaluated with a python script.
 > This can be done with the awesome bash loop:
 > 
 > ```bash
-> for f in `ls *.fsa`; do `~/Documents/cloned/rna-toolbox/rnawolf-benchmark/makeStats $f > $f.stats` ; done 
+> for f in `ls *.fsa`; 
+> do `./makeStats $f > $f.stats` ; done 
 > ```
 > 
 > For any of the evaluations, it is nice to view the stats results with 
 > ```bash
-> tail -n 12 results/mcfold/*.stats
+> tail -n 12 results/wolf/*.stats
 > ```
 > where the result directory has to be changed accordingly.
