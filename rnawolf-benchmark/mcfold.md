@@ -18,6 +18,16 @@ name=`head -n1 data-long-mcfold/$shortname-Ref | tr -d ['>']`;
 struct=`head -n3 data-long-mcfold/$shortname-Ref | tail -n1`; 
 python parse.py -i "results/mcfold/$shortname-MCFold-10" -n "$name" -s "$struct" -o "results/mcfold/$shortname-mcfold-res-10-for-stats.fsa"
 ```
+Run in loop:
+```bash
+for f in `ls data-long-mcfold/*Ref`; 
+do 
+filename=$(basename "$f"); 
+shortname=${filename%-*}; 
+echo $shortname; 
+done
+```
+
 
 Run stats tool:
 ```bash

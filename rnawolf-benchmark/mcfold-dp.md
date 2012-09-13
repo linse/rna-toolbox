@@ -16,6 +16,15 @@ Now parse and transform for stats tool:
 ```bash
 shortname="4ERJ";name=`head -n1 data-long-mcfold/$shortname-Ref | tr -d ['>']`; struct=`head -n3 data-long-mcfold/$shortname-Ref | tail -n1`; python parse.py -i "results/dp-mcfold/$shortname-Ref.mcfold-dp-res-10.fsa" -n "$name" -s "$struct" -o "results/dp-mcfold/$shortname-Ref.mcfold-dp-res-10-for-stats.fsa"
 ```
+Run in loop:
+```bash
+for f in `ls data-long-mcfold/*Ref`; 
+do 
+filename=$(basename "$f"); 
+shortname=${filename%-*}; 
+echo $shortname; 
+done
+```
 
 Run stats tool:
 ```bash
