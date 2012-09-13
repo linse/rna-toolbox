@@ -1,5 +1,4 @@
-Run mcfold in a loop on all sequences from the reference files.
-For each sequence, let it compute 10 suboptimals.
+Run the dynamic programming version of mcfold in a loop on all sequences from the reference files.  For each sequence, let it compute 10 suboptimals.
 
 Note: make sure you have the right version with DP, that is >=2.0.3.
 ```bash
@@ -13,7 +12,7 @@ mcfold-2.0.3 -n $name -t 10 -s $sequence > results/dp-mcfold/$shortname-result.f
 done
 ```
 
-We transform the results into the right format for the stats tool:
+We transform the results into the right format for the stats tool
 ```bash
 for f in `ls data-long-mcfold/*Ref`; 
 do filename=$(basename "$f");
@@ -24,7 +23,12 @@ python parse.py -i "results/dp-mcfold/$shortname-result.fsa" -n "$name" -s "$str
 done
 ```
 
-Run stats tool:
+Run stats tool
 ```bash
 for f in `ls results/dp-mcfold/*stats.fsa`; do `./makeStats $f > $f.stats`;done
+```
+
+View the stats results with
+```bash
+tail -n 12 results/dp-mcfold/*.stats | less
 ```

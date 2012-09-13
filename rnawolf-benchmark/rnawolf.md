@@ -1,4 +1,4 @@
-We run RNAwolf just with a bash loop:
+We run RNAwolf just with a bash loop
 ```bash
 for f in `ls data-long-mcfold/*Ref`; 
 do 
@@ -7,7 +7,7 @@ shortname=${filename%-*};
 head -n2 data-long-mcfold/$shortname-Ref | tail -n1 |  RNAwolf -i "/u/schirmer/Documents/cloned/RNAwolfBinaries/fr3d-400.db"  -s 0.05 -c 10 > results/wolf/$shortname-result.fsa; 
 done
 ```
-We transform the results into the right format for the stats tool:
+We transform the results into the right format for the stats tool
 ```bash
 for f in `ls data-long-mcfold/*Ref`; 
 do filename=$(basename "$f");
@@ -18,7 +18,7 @@ python parse.py -i "results/wolf/$shortname-result.fsa" -n "$name" -s "$struct" 
 done
 ```
 
-Run the stats tool:
+Run the stats tool
 ```bash
 for f in `ls results/wolf/*stats.fsa`;
 do 

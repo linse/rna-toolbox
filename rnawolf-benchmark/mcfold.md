@@ -13,7 +13,7 @@ mcfold -n $name -t 10 -s $sequence > results/mcfold/$shortname-result.fsa;
 done
 ```
 
-We transform the results into the right format for the stats tool:
+We transform the results into the right format for the stats tool
 ```bash
 for f in `ls data-long-mcfold/*Ref`; 
 do 
@@ -25,7 +25,7 @@ python parse.py -i "results/mcfold/$shortname-result.fsa" -n "$name" -s "$struct
 done
 ```
 
-Run the stats tool:
+Run the stats tool
 ```bash
 for f in `ls results/mcfold/*stats.fsa`; 
 do 

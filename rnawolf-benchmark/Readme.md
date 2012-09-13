@@ -1,13 +1,13 @@
 We evaluate several RNA folding programs with suboptimals.
 
-All reference structure files should be in one directory, here data-long-mcfold, and should end in "Ref".
+All reference structure files should be in one directory, here ``data-long-mcfold``, and should end in ``Ref``.
 
 For the output of the four tools, we create directories
 ```bash
 mkdir -p results/dp-mcfold results/mcfold results/subopt results/wolf
 ```
 
-The evaluation procedures for the programs can be found in separate markdown files:
+The evaluation procedures for the programs are in separate markdown files:
 
 * [mcfold](http://github.com/linse/rna-toolbox/blob/master/rnawolf-benchmark/mcfold.md)
 * [dp-mcfold](https://github.com/linse/rna-toolbox/blob/master/rnawolf-benchmark/mcfold-dp.md)

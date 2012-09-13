@@ -15,14 +15,14 @@ do `tail -n+3 $f | cut -d " " -f 1-2 | head -n11 > $f.cut`;
 done
 ```
 
-We transform the results into the right format for the stats tool:
+We transform the results into the right format for the stats tool
 ```bash
 for f in `ls data-long-mcfold/*Ref`; 
 do filename=$(basename "$f");
 shortname=${filename%-*}; 
 name=`head -n1 data-long-mcfold/$shortname-Ref | tr -d ['>']`; 
 struct=`head -n3 data-long-mcfold/$shortname-Ref | tail -n1`; 
-python parse.py -i "results/subopt/$shortname-Ref.subopt-res.fsa.cut" -n "$name" -s "$struct" -o "results/subopt/$shortname-Ref.subopt-res-for-stats.fsa"; 
+python parse.py -i "results/subopt/$shortname-results.cut" -n "$name" -s "$struct" -o "results/subopt/$shortname-results-for-stats.fsa"; 
 done
 ```
 
