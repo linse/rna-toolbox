@@ -124,9 +124,18 @@ if __name__ == '__main__':
                 structure = None
                 
             if sequence and structure and bPrint:
+#              print "we are writing out for *{sequence}* *{structure}* *{output_path}* *{name}* *{ref_structure}* *{just_struct}*".format(sequence=sequence, 
+#                           structure=structure, 
+#                           output_path=output_path, 
+#                           name=name, 
+#                           ref_structure=ref_structure, 
+#                           just_struct=just_struct)
+
               write_output(sequence=sequence, 
                            structure=structure, 
                            output_path=output_path, 
-                           name=name, ref_structure=ref_structure, just_struct=just_struct)
+                           name=name, 
+                           ref_structure=ref_structure, 
+                           just_struct=just_struct)
               bPrint = False
               just_struct = True
